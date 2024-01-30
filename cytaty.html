@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cytaty</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #993333;
+        }
+
+        #quote-container {
+            border: 2px solid #993333;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        #generate-button {
+            font-size: 1em;
+            padding: 10px 20px;
+            background-color: #993333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #category-select {
+            margin-top: 10px;
+            font-size: 1em;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cytaty</h1>
+    <div id="quote-container">
+        <label for="category-select">Wybierz kategorię:</label>
+        <select id="category-select">
+            <option value="general">Ogólne</option>
+            <option value="love">Miłość</option>
+            <option value="truth">Prawda</option>
+        </select>
+
+        <p id="quote-text">Kliknij poniżej, aby wygenerować cytat.</p>
+        <button id="generate-button" onclick="generateQuote()">Generuj Cytat</button>
+    </div>
+
+    <script>
+        const Quotes = {
+            general: [
+                "Nie ma nic bardziej szlachetnego niż dbanie o honor.",
+                "Wielkość nie polega na tym, co się ma, ale na tym, kim się jest.",
+                "Cnota jest najwyższym skarbem szlachcica.",
+                "Przez grzeczność i godność idzie się ścieżką szlachetności.",
+                "Prawdziwa mądrość tkwi w umiejętności słuchania własnego serca."
+            ],
+            love: [
+                "Miłość jest najszlachetniejszym uczuciem, jakie może opanować serce człowieka.",
+                "W miłości tkwi siła, która jest w stanie pokonać wszelkie przeciwności.",
+                "Serce szlachcica bije z miłością do piękna i dobra.",
+                "Miłość to jedyna droga do prawdziwego bogactwa ducha."
+            ],
+            truth: [
+                "Prawda jest kamieniem węgielnym szlachetności.",
+                "Mów prawdę zawsze, nawet jeśli jest trudna do przyjęcia.",
+                "Szlachetny człowiek nie ucieka przed prawdą, lecz stawia jej czoło z odwagą."
+            ]
+
+        };
+
+        function generateQuote() {
+            const quoteContainer = document.getElementById('quote-text');
+            const categorySelect = document.getElementById('category-select');
+            const selectedCategory = categorySelect.value;
+            const quotes = Quotes[selectedCategory];
+            if (quotes) {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                const randomQuote = quotes[randomIndex];
+                quoteContainer.textContent = randomQuote;
+            } else {
+                quoteContainer.textContent = "Wybierz poprawną kategorię.";
+            }
+        }
+    </script>
+</body>
+</html>
